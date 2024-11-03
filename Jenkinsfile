@@ -16,7 +16,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    sh "docker rm -f react-app || true"
+                    sh "docker rm -f java-app || true"
                     sh "docker rmi -f ${IMAGE_NAME} || true"
                     // Build the Docker image using the Dockerfile in the repository
                     docker.build("${IMAGE_NAME}", ".")
@@ -29,7 +29,7 @@ pipeline {
             steps {
                 script {
                     // Run the container to serve the application
-                    sh "docker run -d --name react-app -p 4000:80 ${IMAGE_NAME}"
+                    sh "docker run -d --name java-app -p 4000:80 ${IMAGE_NAME}"
                 }
             }
         }
