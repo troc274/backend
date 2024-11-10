@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_CREDENTIALS_ID = credentials('b6d863d8-ad57-4775-b6f9-4b2b6c46be9e')
+        DOCKER_CREDENTIALS_ID = 'b6d863d8-ad57-4775-b6f9-4b2b6c46be9e'
         DOCKER_HUB_USERNAME = 'thonguyen2749'
         BACKEND_IMAGE = "${DOCKER_HUB_USERNAME}/devops-backend"
     }
