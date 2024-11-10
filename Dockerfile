@@ -1,25 +1,9 @@
-# Maven build container 
-
-FROM maven:3.8.5-openjdk-11 AS maven_build
-
-COPY pom.xml /tmp/
-
-COPY src /tmp/src/
-
-WORKDIR /tmp/
-
-RUN mvn package
-
-#pull base image
-
-FROM eclipse-temurin:11
-
-#expose port 8082
-EXPOSE 8082
-
-#default command
-CMD java -jar /data/hello-world-0.1.0.jar
-
-#copy hello world to docker image from builder image
-
-COPY --from=maven_build /tmp/target/hello-world-0.1.0.jar /data/hello-world-0.1.0.jar
+# Dockerfile
+FROM node:18.13.0
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY . .
+RUN npm run build
+EXPOSE 3000
+CMD ["npm", "run", "start:prod"]

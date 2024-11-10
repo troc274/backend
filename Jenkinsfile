@@ -29,7 +29,7 @@ pipeline {
             steps {
                 script {
                     // Run the container to serve the application
-                    sh "docker run -d --name java-app -p 4000:80 ${IMAGE_NAME}"
+                    sh "docker run -d --name java-app -p 9090:80 ${IMAGE_NAME}"
                 }
             }
         }
